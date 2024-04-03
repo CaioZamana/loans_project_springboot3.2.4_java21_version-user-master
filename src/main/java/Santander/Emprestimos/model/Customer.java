@@ -37,32 +37,6 @@ public class Customer extends Users {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    public Customer(){}
-
-    public Customer(String username, String password, String email, String cpf, String fullName, Set<RoleEnum> roles, String address, String telephone, CreditScore creditScore, List<Loan> loans, List<Account> accounts, List<TransactionHistory> transactionHistory) {
-        super(username, password, email, cpf, fullName, roles, address, telephone);
-        this.creditScore = creditScore;
-        this.loans = loans;
-        this.accounts = accounts;
-        this.transactionHistory = transactionHistory;
-    }
-
-    public Customer(CreditScore creditScore, List<Loan> loans, List<Account> accounts, List<TransactionHistory> transactionHistory) {
-        this.creditScore = creditScore;
-        this.loans = loans;
-        this.accounts = accounts;
-        this.transactionHistory = transactionHistory;
-    }
-
-    public Customer(String username, String password, String email, String cpf, String fullName, Set<RoleEnum> roles, String address, String telephone, Long id, CreditScore creditScore, List<Loan> loans, List<Account> accounts, List<TransactionHistory> transactionHistory, RoleEnum role) {
-        super(username, password, email, cpf, fullName, roles, address, telephone);
-        this.id = id;
-        this.creditScore = creditScore;
-        this.loans = loans;
-        this.accounts = accounts;
-        this.transactionHistory = transactionHistory;
-        this.role = role;
-    }
 
     public CreditScore getCreditScore() {
         return creditScore;

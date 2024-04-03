@@ -22,15 +22,6 @@ public class Funcionary extends Users {
     @NotBlank(message = "O número de registro é obrigatório")
     private String professionalRegistrationNumber;
 
-    public Funcionary(String username, String password, String email, String cpf, String fullName, Set<RoleEnum> roles, String address, String telephone, Long id, Double salary, String professionalRegistrationNumber) {
-        super(username, password, email, cpf, fullName, roles, address, telephone);
-        this.id = id;
-        this.salary = salary;
-        this.professionalRegistrationNumber = professionalRegistrationNumber;
-    }
-
-    public Funcionary() {
-    }
 
     @Override
     public Long getId() {

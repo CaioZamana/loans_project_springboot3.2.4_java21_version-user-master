@@ -54,19 +54,6 @@ public class Users {
     @NotBlank(message = "Telefone é obrigatório")
     private String telephone;
 
-    public Users(String username, String password, String email, String cpf, String fullName, Set<RoleEnum> roles, String address, String telephone) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.cpf = cpf;
-        this.fullName = fullName;
-        this.roles = roles;
-        this.address = address;
-        this.telephone = telephone;
-    }
-
-    public Users() {
-    }
 
 
     public Long getId() {
