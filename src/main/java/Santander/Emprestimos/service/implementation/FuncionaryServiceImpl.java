@@ -22,15 +22,15 @@ public class FuncionaryServiceImpl {
         this.funcionaryRepository = funcionaryRepository;
     }
 
-    void createFuncionary(Funcionary funcionary) {
+    public void createFuncionary(Funcionary funcionary) {
         if (funcionaryRepository.existsByCpf(funcionary.getCpf())) {
-            throw new BusinessException("CPF já está sendo utilizado");
+            throw new BusinessException("CPF já está sendo utilizado.");
         }
         if (funcionaryRepository.existsByEmail(funcionary.getEmail())) {
-            throw new BusinessException("E-mail já está sendo utilizado");
+            throw new BusinessException("E-mail já está sendo utilizado.");
         }
         if (funcionaryRepository.existsByUsername(funcionary.getUsername())) {
-            throw new BusinessException("Username já está sendo utilizado");
+            throw new BusinessException("Username já está sendo utilizado.");
         }
 
         funcionaryRepository.save(funcionary);
