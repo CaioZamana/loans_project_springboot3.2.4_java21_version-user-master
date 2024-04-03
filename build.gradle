@@ -1,0 +1,49 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.4'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'Santander'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.30'
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0' // Swagger UI dependency
+
+	implementation 'io.swagger.core.v3:swagger-annotations:2.2.15' // Optional for API annotations
+
+
+//	implementation 'org.springframework.boot:spring-boot-starter-security' //Security Config
+	implementation 'org.apache.commons:commons-lang3:3.5'
+	implementation 'org.springframework.security:spring-security-crypto:6.2.1' // Criptografar senha
+
+
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

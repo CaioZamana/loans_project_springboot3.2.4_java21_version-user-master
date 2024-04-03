@@ -1,0 +1,70 @@
+## Configurações do servidor web
+#server:
+#  port: 8080
+#
+## Configurações do banco de dados H2 (para ambiente de desenvolvimento)
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: caio
+#    password:
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update   # criação automatica das tabelas baseado nas entidades
+#
+#  # Configurações do Spring Security
+#  security:
+#    enabled: true
+#    user:
+#      name: admin
+#      password: 123
+#
+#      roles: ADMIN,USER
+#
+#
+#  # Configurações do Flyway (para migração de banco de dados)
+#  flyway:
+#    enabled: false
+#    locations: classpath:db/migration
+#
+#  # Habilitar o console do H2 para ambiente de desenvolvimento
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#
+#  # Habilitar o Thymeleaf para renderização de páginas HTML (opcional)
+#  thymeleaf:
+#    enabled: true
+#
+#  # Habilitar a validação Bean Validation (opcional)
+#  mvc:
+#    throw-exception-if-no-handler-found: true
+#    static-path-pattern: /static/**
+#    locale-resolver: fixed
+#
+#  # Configurações adicionais para o empacotamento do Jar (opcional)
+#  main:
+#    banner-mode: off
+#
+## Logging
+#logging:
+#  level:
+#    org.springframework: INFO
+#    org.hibernate: ERROR
+#
+#
+#  # Configuração para o Swagger UI
+#  mvc:
+#    servlet:
+#      path: /
+#
+## Configuração para o Swagger Resources
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui
+#    url: /swagger-ui.html
+#  api-docs:
+#    path: /swagger-resources
