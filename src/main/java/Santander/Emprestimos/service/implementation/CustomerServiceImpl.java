@@ -52,7 +52,11 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+        List<Customer> customerList = customerRepository.findAll();
+        if (customerList.isEmpty()){
+            throw new BusinessException("A lista de customers está vazia.");
+        }
+        return customerList;
     }
 
     public Customer getCustomerById(Long customerId){
