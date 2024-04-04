@@ -32,10 +32,10 @@ public class CustomerController {
     }
 
     @PostMapping("/post")
-    @Operation(summary = "Create new customer.", description = "Create a new customer and return 'Cliente criado com sucesso'")
+    @Operation(summary = "Create new customer.", description = "Create a new customer and return 'Cliente criado com sucesso'.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Customer create successfully"),
-            @ApiResponse(responseCode = "422", description = "Invalid customer data provided")
+            @ApiResponse(responseCode = "201", description = "Customer create successfully."),
+            @ApiResponse(responseCode = "422", description = "Invalid customer data provided.")
     })
     public ResponseEntity<String> createCustomer(@RequestBody CustomerDto customerDto) {
         customerServiceImpl.createCustomer(customerDto.toEntity());
@@ -45,10 +45,10 @@ public class CustomerController {
 
 
     @DeleteMapping("/{customerId}")
-    @Operation(summary ="Delete a customer.", description = "Delete and existing customer based on its ID")
+    @Operation(summary ="Delete a customer.", description = "Delete and existing customer based on its ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "User deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "User not found")
+            @ApiResponse(responseCode = "204", description = "User deleted successfully."),
+            @ApiResponse(responseCode = "404", description = "User not found.")
 
     })
     public ResponseEntity<String> deleteCustomer(@PathVariable Long customerId) {
@@ -57,9 +57,9 @@ public class CustomerController {
     }
 
     @GetMapping("/get-all")
-    @Operation(summary = "Get all customer.", description = "Retrieve a list of all registered customers")
+    @Operation(summary = "Get all customer.", description = "Retrieve a list of all registered customers.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Operation successful")
+            @ApiResponse(responseCode = "200", description = "Operation successful.")
     })
     public ResponseEntity<List<CustomerDto>> getAllCustomers(){
     //GET ALL Utilizando streams e map
@@ -71,10 +71,10 @@ public class CustomerController {
         return ResponseEntity.ok(customerDtoList);
     }
     @GetMapping("/get/{customerId}")
-    @Operation(summary = "Get a customer by ID.", description = "Retrieve a specific customer based on its ID")
+    @Operation(summary = "Get a customer by ID.", description = "Retrieve a specific customer based on its ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Operation successful"),
-            @ApiResponse(responseCode = "404", description = "Customer not found")
+            @ApiResponse(responseCode = "200", description = "Operation successful."),
+            @ApiResponse(responseCode = "404", description = "Customer not found.")
     })
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long customerId) {
         Customer customer = customerServiceImpl.getCustomerById(customerId);
@@ -84,11 +84,11 @@ public class CustomerController {
 
 
     @PutMapping("/update/{customerId}")
-    @Operation(summary = "Update a customer.", description = "Update the data of and existing customer based on its ID")
+    @Operation(summary = "Update a customer.", description = "Update the data of and existing customer based on its ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Customer updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Customer not found"),
-            @ApiResponse(responseCode = "422", description = "Invalid customer data provided")
+            @ApiResponse(responseCode = "200", description = "Customer updated successfully."),
+            @ApiResponse(responseCode = "404", description = "Customer not found."),
+            @ApiResponse(responseCode = "422", description = "Invalid customer data provided.")
     })
     public ResponseEntity<String> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto customerDto) {
 

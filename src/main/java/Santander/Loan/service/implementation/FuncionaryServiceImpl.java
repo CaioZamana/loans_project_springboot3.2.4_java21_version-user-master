@@ -71,9 +71,6 @@ public class FuncionaryServiceImpl {
 //    List<Funcionary> getAllFuncionaries(){
 //
 //    }
-//    Funcionary getFuncionaryById(Long funcionaryId){
-//
-//    }
 
 }
 
