@@ -2,8 +2,8 @@ package Santander.Loan.model;
 
 import Santander.Loan.security.RoleEnum;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import lombok.*;
 
@@ -24,22 +24,27 @@ public class Users {
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Username é obrigartório")
+    @Pattern(regexp = "^[a-zA-Z0-9_]{4,16}$", message = "O username deve conter apenas letras, números ou underscores e ter entre 4 e 16 caracteres")
     private String username;
 
     @Column(nullable = false)
     @NotBlank(message = "Password é obrigatório")
     private String password;
 
+//    @NotBlank(message = "Confirmação de senha é obrigatória")
+//    private String confirmPassword;
     @Column(unique = true, nullable = false)
     @NotBlank(message = "O E-mail é obrigatório")
+    @Email(message = "E-mail inválido")
     private String email;
 
     @Column(unique = true, nullable = false)
-    @NotBlank(message = "CPF é obrigatório")
+    @CPF(message = "CPF inválido")
     private String cpf;
 
     @Column(nullable = false)
     @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 2, max = 50, message = "O nome deve ter entre 2 e 50 caracteres")
     private String fullName;
 
     @Column(nullable = false)
@@ -53,6 +58,7 @@ public class Users {
 
     @Column(nullable = false)
     @NotBlank(message = "Telefone é obrigatório")
+    @Pattern(regexp="\\d{10,11}", message="A informação do telefone deve conter apenas 10 ou 11 dígitos numéricos consecutivos, incluindo o DDD.") // Validação de padrão para 10 ou 11 dígitos numéricos
     private String telephone;
 
 
@@ -81,7 +87,15 @@ public class Users {
 //        this.password = password;
 //    }
 
-    public void setPassword (String password){
+//    public void setPassword (String password){
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        this.password = passwordEncoder.encode(password);
+//    }
+
+    public void setPassword(String password) {
+        if (password.length() < 8 || password.length() > 30) {
+            throw new IllegalArgumentException("A senha deve ter entre 8 e 30 caracteres");
+        }
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.password = passwordEncoder.encode(password);
     }
