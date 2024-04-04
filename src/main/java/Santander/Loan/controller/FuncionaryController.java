@@ -5,6 +5,7 @@ import Santander.Loan.service.implementation.FuncionaryServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 //@CrossOrigin(origins = {"http://localhost:8080"})
 @RequestMapping("/funcionaries")
+@Tag(name = "Funcionaries Controller", description = "RESTful API for managing funcionaries.")
 public class FuncionaryController {
 
     private final FuncionaryServiceImpl funcionaryServiceImpl;

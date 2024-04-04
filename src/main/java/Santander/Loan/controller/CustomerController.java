@@ -3,12 +3,13 @@ package Santander.Loan.controller;
 
 
 import Santander.Loan.dto.CustomerDto;
-import Santander.Loan.exception.BusinessException;
+import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Customer;
 import Santander.Loan.service.implementation.CustomerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 //@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
 @RequestMapping("/customers")
+@Tag(name = "Customer Controller", description = "RESTful API for managing customer.")
 public class CustomerController {
 
     private final CustomerServiceImpl customerServiceImpl;

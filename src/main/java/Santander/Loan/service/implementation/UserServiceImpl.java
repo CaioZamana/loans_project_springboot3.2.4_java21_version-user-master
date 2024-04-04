@@ -1,6 +1,6 @@
 package Santander.Loan.service.implementation;
 
-import Santander.Loan.exception.BusinessException;
+import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Users;
 import Santander.Loan.reposiroty.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

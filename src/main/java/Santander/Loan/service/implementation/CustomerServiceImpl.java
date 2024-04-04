@@ -1,6 +1,6 @@
 package Santander.Loan.service.implementation;
 
-import Santander.Loan.exception.BusinessException;
+import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Customer;
 import Santander.Loan.reposiroty.CustomerRepository;
 import Santander.Loan.security.RoleEnum;
