@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @PostMapping("/post")
-    @Operation(summary = "Create new customer", description = "Create a new customer and return 'Cliente criado com sucesso'")
+    @Operation(summary = "Create new customer.", description = "Create a new customer and return 'Cliente criado com sucesso'")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Customer create successfully"),
             @ApiResponse(responseCode = "422", description = "Invalid customer data provided")
@@ -45,7 +45,7 @@ public class CustomerController {
 
 
     @DeleteMapping("/{customerId}")
-    @Operation(summary ="Delete a customer", description = "Delete and existing customer based on its ID")
+    @Operation(summary ="Delete a customer.", description = "Delete and existing customer based on its ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "User deleted successfully"),
             @ApiResponse(responseCode = "404", description = "User not found")
@@ -57,7 +57,7 @@ public class CustomerController {
     }
 
     @GetMapping("/get-all")
-    @Operation(summary = "Get all customer", description = "Retrieve a list of all registered customers")
+    @Operation(summary = "Get all customer.", description = "Retrieve a list of all registered customers")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Operation successful")
     })
@@ -71,7 +71,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerDtoList);
     }
     @GetMapping("/get/{customerId}")
-    @Operation(summary = "Get a customer by ID", description = "Retrieve a specific customer based on its ID")
+    @Operation(summary = "Get a customer by ID.", description = "Retrieve a specific customer based on its ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Operation successful"),
             @ApiResponse(responseCode = "404", description = "Customer not found")
@@ -84,30 +84,23 @@ public class CustomerController {
 
 
     @PutMapping("/update/{customerId}")
-    @Operation(summary = "Update a customer", description = "Update the data of and existing customer based on its ID")
+    @Operation(summary = "Update a customer.", description = "Update the data of and existing customer based on its ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Customer updated successfully"),
             @ApiResponse(responseCode = "404", description = "Customer not found"),
             @ApiResponse(responseCode = "422", description = "Invalid customer data provided")
     })
     public ResponseEntity<String> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto customerDto) {
-        try {
-            // Verifica se o cliente existe no banco de dados
+
             Customer existingCustomer = customerServiceImpl.getCustomerById(customerId);
 
-            // Atualiza as propriedades do cliente existente com base nos dados do DTO
             Customer updatedCustomer = customerDto.toEntity(); // Converter CustomerDto para Customer
             updatedCustomer.setId(customerId); // Define o ID do cliente
 
-            // Chama o serviço para atualizar o cliente
             customerServiceImpl.updateCustomer(updatedCustomer);
 
-            // Retorna uma resposta de sucesso
             return ResponseEntity.ok().body("Cliente atualizado com sucesso.");
-        } catch (BusinessException e) {
-            // Retorna uma resposta de erro com a mensagem da exceção
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+
     }
 
 }

@@ -36,12 +36,6 @@ public class GlobalExceptionHandler {
     }
 
 
-    // Manipulador de exceção para lançar a mensagem de validação do password do usuário no corpo da resposta
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-    }
-
     // Manipulador de exceção para lidar com ConstraintViolationException e retornar a mensagem de erro no corpo da resposta
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
@@ -49,4 +43,12 @@ public class GlobalExceptionHandler {
         String errorMessage = e.getConstraintViolations().iterator().next().getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
+
+    // Manipulador de exceção para lançar a mensagem de validação do password do usuário no corpo da resposta
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+
 }

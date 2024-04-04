@@ -35,6 +35,8 @@ public class Customer extends Users {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
+    public Customer() {
+    }
 
     public CreditScore getCreditScore() {
         return creditScore;
@@ -86,6 +88,9 @@ public class Customer extends Users {
     public void setId(Long id) {
         this.id = id;
     }
+
+
+
 }
 
 

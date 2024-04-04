@@ -87,18 +87,21 @@ public class Users {
 //        this.password = password;
 //    }
 
-//    public void setPassword (String password){
+    public void setPassword (String password){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
+    }
+
+
+    //validação do password
+//    public void setPassword(String password) {
+//        if (password.length() < 8 || password.length() > 30) {
+//            throw new IllegalArgumentException("A senha deve ter entre 8 e 30 caracteres");
+//        }
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //        this.password = passwordEncoder.encode(password);
 //    }
 
-    public void setPassword(String password) {
-        if (password.length() < 8 || password.length() > 30) {
-            throw new IllegalArgumentException("A senha deve ter entre 8 e 30 caracteres");
-        }
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
-    }
 
 
     public String getEmail() {

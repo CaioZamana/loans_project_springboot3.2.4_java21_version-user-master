@@ -5,8 +5,11 @@ import Santander.Loan.model.Customer;
 import Santander.Loan.reposiroty.CustomerRepository;
 import Santander.Loan.security.RoleEnum;
 import Santander.Loan.service.interfaces.ICustomerService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,7 +50,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     public void deleteCustomer(Long customerId) {
         if (!customerRepository.existsById(customerId)) {
-            throw new BusinessException("Cliente com ID " + customerId + " não encontrado");
+            throw new BusinessException("Cliente com ID " + customerId + " não encontrado.");
         }
         customerRepository.deleteById(customerId);
     }
@@ -65,32 +68,55 @@ public class CustomerServiceImpl implements ICustomerService {
                 .orElseThrow(() -> new BusinessException("Cliente com o ID '" + customerId +"' não foi encontrado."));
     }
 
+//    public void updateCustomer(Customer updatedCustomer) {
+//        try {
+//            // Verifica se o cliente existe no banco de dados
+//            if (!customerRepository.existsById(updatedCustomer.getId())) {
+//                throw new BusinessException("Cliente não encontrado");
+//            }
+//
+//            // Obtém o cliente existente do banco de dados
+//            Customer existingCustomer = customerRepository.getById(updatedCustomer.getId());
+//
+//            // Verifica se a senha do cliente atualizado atende aos critérios de validação
+//            existingCustomer.setPassword(updatedCustomer.getPassword());
+//
+//            // Atualiza os outros dados do cliente existente com os dados do cliente atualizado
+//            existingCustomer.setUsername(updatedCustomer.getUsername());
+//            existingCustomer.setEmail(updatedCustomer.getEmail());
+//            existingCustomer.setCpf(updatedCustomer.getCpf());
+//            existingCustomer.setFullName(updatedCustomer.getFullName());
+//            existingCustomer.setAddress(updatedCustomer.getAddress());
+//            existingCustomer.setTelephone(updatedCustomer.getTelephone());
+//
+//            // Salva as alterações no banco de dados
+//            customerRepository.save(existingCustomer);
+//        } catch (Exception e) {
+//            throw new BusinessException("Erro ao atualizar cliente. Mensagem do erro: " + e.getMessage());
+//        }
+//    }
+
+
+
+    @Override
     public void updateCustomer(Customer updatedCustomer) {
         try {
             // Verifica se o cliente existe no banco de dados
-            if (!customerRepository.existsById(updatedCustomer.getId())) {
-                throw new BusinessException("Cliente não encontrado");
-            }
+            Customer existingCustomer = customerRepository.findById(updatedCustomer.getId())
+                    .orElseThrow(() -> new BusinessException("Cliente não encontrado"));
 
-
-            // Obtém o cliente existente do banco de dados
-            Customer existingCustomer = customerRepository.getById(updatedCustomer.getId());
-
-            // Atualiza os dados do cliente existente com os dados do cliente atualizado
+            // Atualiza os dados do cliente com base nos valores fornecidos
             existingCustomer.setUsername(updatedCustomer.getUsername());
-            existingCustomer.setPassword(updatedCustomer.getPassword());
             existingCustomer.setEmail(updatedCustomer.getEmail());
             existingCustomer.setCpf(updatedCustomer.getCpf());
             existingCustomer.setFullName(updatedCustomer.getFullName());
             existingCustomer.setAddress(updatedCustomer.getAddress());
             existingCustomer.setTelephone(updatedCustomer.getTelephone());
-            // Atualize outros campos conforme necessário...
 
             // Salva as alterações no banco de dados
             customerRepository.save(existingCustomer);
         } catch (Exception e) {
-            throw new BusinessException("Erro ao atualizar cliente, username, cpf ou e-mail já estão sendo utilizados. Mensagem do erro: " + e.getMessage());
+            throw new BusinessException("Erro ao atualizar cliente. Mensagem do erro: " + e.getMessage());
         }
     }
-
 }
