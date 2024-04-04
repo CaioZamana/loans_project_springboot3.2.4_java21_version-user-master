@@ -120,7 +120,7 @@ public class CustomerServiceImpl implements ICustomerService {
             // Salva as alterações no banco de dados
             customerRepository.save(existingCustomer);
         } catch (Exception e) {
-            throw new BusinessException("Erro ao atualizar cliente. Campo contém caractere inválido. Mensagem do erro: " + e.getMessage());
+            throw new BusinessException("Erro ao atualizar cliente. Contém campo inválido. Mensagem do erro: " + e.getMessage());
         }
     }
 }

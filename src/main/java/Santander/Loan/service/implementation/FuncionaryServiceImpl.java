@@ -57,7 +57,7 @@ public class FuncionaryServiceImpl {
 
             funcionaryRepository.save(existingFuncionary);
         } catch (Exception e) {
-            throw new BusinessException("Erro ao atualizar funcionário. Campo contém caractere inválido. Mensagem do erro: "+ e.getMessage());
+            throw new BusinessException("Erro ao atualizar funcionário. Contém campo inválido. Mensagem do erro: "+ e.getMessage());
         }
     }
 
