@@ -29,6 +29,7 @@ public class Users {
 
     @Column(nullable = false)
     @NotBlank(message = "Password é obrigatório")
+    @Size(min = 10, max = 50, message = "O tamanho da senha deve ter entre 10 e 50 caracteres")
     private String password;
 
 //    @NotBlank(message = "Confirmação de senha é obrigatória")
@@ -87,10 +88,10 @@ public class Users {
 //        this.password = password;
 //    }
 
-    public void setPassword (String password){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
-    }
+//    public void setPassword (String password){
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        this.password = passwordEncoder.encode(password);
+//    }
 
 
     //validação do password
@@ -102,6 +103,23 @@ public class Users {
 //        this.password = passwordEncoder.encode(password);
 //    }
 
+
+    public void setPassword(String password) {
+        // Atribui a senha sem criptografar
+        this.password = password;
+    }
+
+    // Método para criptografar a senha e validar seu tamanho
+    public void encryptAndValidatePassword() {
+        // Validação do tamanho da senha antes de criptografar
+        if (this.password.length() < 10 || this.password.length() > 50) {
+            throw new IllegalArgumentException("A senha deve ter entre 10 e 50 caracteres");
+        }
+
+        // Criptografa a senha
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(this.password);
+    }
 
 
     public String getEmail() {

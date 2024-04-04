@@ -115,6 +115,7 @@ public class CustomerServiceImpl implements ICustomerService {
             existingCustomer.setFullName(updatedCustomer.getFullName());
             existingCustomer.setAddress(updatedCustomer.getAddress());
             existingCustomer.setTelephone(updatedCustomer.getTelephone());
+            existingCustomer.setPassword(updatedCustomer.getPassword());
 
             // Salva as alterações no banco de dados
             customerRepository.save(existingCustomer);
