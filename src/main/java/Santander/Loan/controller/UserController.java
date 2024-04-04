@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -89,5 +90,16 @@ public class UserController {
         return ResponseEntity.ok(userDtos);
     }
 
+    @GetMapping("/get/{userId}")
+    @Operation(summary = "Get a user by ID.", description = "Retrieve a specific user based on its ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation successful."),
+            @ApiResponse(responseCode = "404", description = "User not found.")
+    })
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId){
+        Users user = userServiceImpl.getUserById(userId);
+        UserDto userDto = UserDto.fromEntity(user);
+        return ResponseEntity.ok(userDto);
+    }
 
 }

@@ -57,6 +57,12 @@ public class UserServiceImpl {
         }
         return usersList;
     }
+
+    public Users getUserById(Long userId){
+        return userRepository.findById(userId)
+                .orElseThrow(()-> new BusinessException("Usuário com ID '"+ userId + "' não encontrado."));
+
+    }
 }
 
 
