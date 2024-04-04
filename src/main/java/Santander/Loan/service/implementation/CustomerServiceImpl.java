@@ -3,6 +3,7 @@ package Santander.Loan.service.implementation;
 import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Customer;
 import Santander.Loan.reposiroty.CustomerRepository;
+import Santander.Loan.reposiroty.UserRepository;
 import Santander.Loan.security.RoleEnum;
 import Santander.Loan.service.interfaces.ICustomerService;
 import jakarta.transaction.Transactional;
@@ -20,20 +21,24 @@ import java.util.Set;
 public class CustomerServiceImpl implements ICustomerService {
 
     private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
+
+
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, UserRepository userRepository) {
         this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
     }
 
     public void createCustomer(Customer customer) {
-        if (customerRepository.existsByUsername(customer.getUsername())) {
+        if (userRepository.existsByUsername(customer.getUsername())) {
             throw new BusinessException("Este Username já está sendo utilizado.");
         }
-        if (customerRepository.existsByEmail(customer.getEmail())) {
+        if (userRepository.existsByEmail(customer.getEmail())) {
             throw new BusinessException("Este e-mail já foi cadastrado.");
         }
-        if (customerRepository.existsByCpf(customer.getCpf())) {
+        if (userRepository.existsByCpf(customer.getCpf())) {
             throw new BusinessException("Este CPF já foi cadastrado.");
         }
 
@@ -44,8 +49,6 @@ public class CustomerServiceImpl implements ICustomerService {
 
         customerRepository.save(customer);
     }
-
-
 
 
     public void deleteCustomer(Long customerId) {
@@ -103,7 +106,7 @@ public class CustomerServiceImpl implements ICustomerService {
         try {
             // Verifica se o cliente existe no banco de dados
             Customer existingCustomer = customerRepository.findById(updatedCustomer.getId())
-                    .orElseThrow(() -> new BusinessException("Cliente não encontrado"));
+                    .orElseThrow(() -> new BusinessException("Cliente não encontrado."));
 
             // Atualiza os dados do cliente com base nos valores fornecidos
             existingCustomer.setUsername(updatedCustomer.getUsername());

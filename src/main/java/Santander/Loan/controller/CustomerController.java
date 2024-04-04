@@ -92,8 +92,6 @@ public class CustomerController {
     })
     public ResponseEntity<String> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto customerDto) {
 
-            Customer existingCustomer = customerServiceImpl.getCustomerById(customerId);
-
             Customer updatedCustomer = customerDto.toEntity(); // Converter CustomerDto para Customer
             updatedCustomer.setId(customerId); // Define o ID do cliente
 
@@ -102,5 +100,4 @@ public class CustomerController {
             return ResponseEntity.ok().body("Cliente atualizado com sucesso.");
 
     }
-
 }

@@ -100,6 +100,7 @@ public class FuncionaryDto {
         this.roles = roles;
     }
 
+    //Método para converter FuncionaryDTo to Funcioanry Entity
     public Funcionary toEntity() {
         Funcionary funcionary = new Funcionary();
         funcionary.setUsername(this.username);
