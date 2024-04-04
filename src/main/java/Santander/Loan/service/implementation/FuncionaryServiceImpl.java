@@ -6,6 +6,7 @@ import Santander.Loan.model.Funcionary;
 import Santander.Loan.reposiroty.FuncionaryRepository;
 import Santander.Loan.reposiroty.UserRepository;
 import Santander.Loan.security.RoleEnum;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class FuncionaryServiceImpl {
 
 
     public void updateFuncionary(Funcionary updatedFuncionary){
-        try{
+        try {
             Funcionary existingFuncionary = funcionaryRepository.findById(updatedFuncionary.getId())
                     .orElseThrow(() -> new BusinessException("Funcionário não encontrado."));
 
@@ -56,7 +57,7 @@ public class FuncionaryServiceImpl {
 
             funcionaryRepository.save(existingFuncionary);
         } catch (Exception e) {
-            throw new BusinessException("Erro ao atualizar funcionário. Mensagem do erro: "+ e.getMessage());
+            throw new BusinessException("Erro ao atualizar funcionário. Campo contém caractere inválido. Mensagem do erro: "+ e.getMessage());
         }
     }
 
