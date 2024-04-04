@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 //@Data
@@ -44,7 +45,7 @@ public class Users {
     @Column(nullable = false)
     @NotEmpty(message = "A lista de papéis não pode estar vazia")
     @Enumerated(EnumType.STRING)
-    private Set<RoleEnum> roles;
+    private List<RoleEnum> roles;
 
     @Column(nullable = false)
     @NotBlank(message = "Endereço é obrigatório")
@@ -110,11 +111,11 @@ public class Users {
         this.fullName = fullName;
     }
 
-    public Set<RoleEnum> getRoles() {
+    public List<RoleEnum> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<RoleEnum> roles) {
+    public void setRoles(List<RoleEnum> roles) {
         this.roles = roles;
     }
 

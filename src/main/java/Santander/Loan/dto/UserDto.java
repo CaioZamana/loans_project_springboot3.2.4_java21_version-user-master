@@ -3,7 +3,9 @@ package Santander.Loan.dto;
 import Santander.Loan.model.Users;
 import Santander.Loan.security.RoleEnum;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class UserDto {
@@ -14,7 +16,7 @@ public class UserDto {
     private String email;
     private String cpf;
     private String fullName;
-    private Set<RoleEnum> roles;
+    private List<RoleEnum> roles;
     private String address;
     private String telephone;
 
@@ -68,11 +70,11 @@ public class UserDto {
         this.fullName = fullName;
     }
 
-    public Set<RoleEnum> getRoles() {
+    public List<RoleEnum> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<RoleEnum> roles) {
+    public void setRoles(List<RoleEnum> roles) {
         this.roles = roles;
     }
 
@@ -103,7 +105,7 @@ public class UserDto {
         users.setEmail(this.email);
         users.setCpf(this.cpf);
         users.setFullName(this.fullName);
-        users.setRoles(this.roles != null ? new HashSet<>(this.roles) : null);
+        users.setRoles(this.roles != null ? new ArrayList<>(this.roles) : null);
         users.setAddress(this.address);
         users.setTelephone(this.telephone);
         return users;

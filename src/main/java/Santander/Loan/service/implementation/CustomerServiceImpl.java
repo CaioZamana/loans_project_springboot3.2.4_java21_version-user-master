@@ -8,6 +8,7 @@ import Santander.Loan.service.interfaces.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,7 +34,7 @@ public class CustomerServiceImpl implements ICustomerService {
             throw new BusinessException("Este CPF já foi cadastrado.");
         }
 
-        Set<RoleEnum> roles = new HashSet<>();
+        List<RoleEnum> roles = new ArrayList<>();
         roles.add(RoleEnum.USER);
 
         customer.setRoles(roles);

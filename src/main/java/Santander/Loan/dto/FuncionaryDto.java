@@ -3,6 +3,7 @@ package Santander.Loan.dto;
 import Santander.Loan.model.Funcionary;
 import Santander.Loan.security.RoleEnum;
 
+import java.util.List;
 import java.util.Set;
 
 public class FuncionaryDto {
@@ -16,7 +17,7 @@ public class FuncionaryDto {
     private String telephone;
     private String professionalRegistrationNumber;
     private Double salary;
-    private Set<RoleEnum> roles;
+    private List<RoleEnum> roles;
 
 
     public String getUsername() {
@@ -91,11 +92,11 @@ public class FuncionaryDto {
         this.salary = salary;
     }
 
-    public Set<RoleEnum> getRoles() {
+    public List<RoleEnum> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<RoleEnum> roles) {
+    public void setRoles(List<RoleEnum> roles) {
         this.roles = roles;
     }
 
