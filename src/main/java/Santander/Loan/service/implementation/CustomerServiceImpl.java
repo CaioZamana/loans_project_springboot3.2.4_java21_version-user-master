@@ -6,29 +6,25 @@ import Santander.Loan.reposiroty.CustomerRepository;
 import Santander.Loan.reposiroty.UserRepository;
 import Santander.Loan.security.RoleEnum;
 import Santander.Loan.service.interfaces.ICustomerService;
-import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 
     private final CustomerRepository customerRepository;
     private final UserRepository userRepository;
-
-
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public CustomerServiceImpl(CustomerRepository customerRepository, UserRepository userRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository, UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void createCustomer(Customer customer) {
@@ -42,14 +38,18 @@ public class CustomerServiceImpl implements ICustomerService {
             throw new BusinessException("Este CPF já foi cadastrado.");
         }
 
+        // Criptografa a senha antes de salvar
+        String encryptedPassword = passwordEncoder.encode(customer.getPassword());
+        customer.setPassword(encryptedPassword);
+
+        // Define as roles do cliente
         List<RoleEnum> roles = new ArrayList<>();
         roles.add(RoleEnum.USER);
-
         customer.setRoles(roles);
 
+        // Salva o cliente no banco de dados
         customerRepository.save(customer);
     }
-
 
     public void deleteCustomer(Long customerId) {
         if (!customerRepository.existsById(customerId)) {
@@ -70,36 +70,6 @@ public class CustomerServiceImpl implements ICustomerService {
         return customerRepository.findById(customerId)
                 .orElseThrow(() -> new BusinessException("Cliente com o ID '" + customerId +"' não foi encontrado."));
     }
-
-//    public void updateCustomer(Customer updatedCustomer) {
-//        try {
-//            // Verifica se o cliente existe no banco de dados
-//            if (!customerRepository.existsById(updatedCustomer.getId())) {
-//                throw new BusinessException("Cliente não encontrado");
-//            }
-//
-//            // Obtém o cliente existente do banco de dados
-//            Customer existingCustomer = customerRepository.getById(updatedCustomer.getId());
-//
-//            // Verifica se a senha do cliente atualizado atende aos critérios de validação
-//            existingCustomer.setPassword(updatedCustomer.getPassword());
-//
-//            // Atualiza os outros dados do cliente existente com os dados do cliente atualizado
-//            existingCustomer.setUsername(updatedCustomer.getUsername());
-//            existingCustomer.setEmail(updatedCustomer.getEmail());
-//            existingCustomer.setCpf(updatedCustomer.getCpf());
-//            existingCustomer.setFullName(updatedCustomer.getFullName());
-//            existingCustomer.setAddress(updatedCustomer.getAddress());
-//            existingCustomer.setTelephone(updatedCustomer.getTelephone());
-//
-//            // Salva as alterações no banco de dados
-//            customerRepository.save(existingCustomer);
-//        } catch (Exception e) {
-//            throw new BusinessException("Erro ao atualizar cliente. Mensagem do erro: " + e.getMessage());
-//        }
-//    }
-
-
 
     @Override
     public void updateCustomer(Customer updatedCustomer) {
