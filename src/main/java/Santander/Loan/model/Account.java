@@ -16,7 +16,6 @@ public class Account {
     @Enumerated(EnumType.STRING)
     private AccountTypeEnum accountType;
 
-    // Não é mais necessário gerar automaticamente o número da conta
     @Column(unique = true, nullable = false)
     private Long accountNumber; // Número de conta
 
