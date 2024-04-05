@@ -48,8 +48,9 @@ public class FuncionaryServiceImpl implements IFuncionaryService {
         funcionaryRepository.save(funcionary);
     }
 
+
+    // Utiliza uma expressão regular para verificar se a senha contém apenas dígitos numéricos
     private boolean isNumericPassword(String password) {
-        // Utiliza uma expressão regular para verificar se a senha contém apenas dígitos numéricos
         return Pattern.matches("^\\d{6,10}$", password);
     }
 
