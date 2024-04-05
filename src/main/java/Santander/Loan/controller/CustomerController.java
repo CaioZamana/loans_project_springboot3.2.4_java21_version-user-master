@@ -44,7 +44,7 @@ public class CustomerController {
 
 
 
-    @DeleteMapping("/{customerId}")
+    @DeleteMapping("/delete/{customerId}")
     @Operation(summary ="Delete a customer.", description = "Delete and existing customer based on its ID.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "User deleted successfully."),
@@ -57,7 +57,7 @@ public class CustomerController {
     }
 
     @GetMapping("/get-all")
-    @Operation(summary = "Get all customer.", description = "Retrieve a list of all registered customers.")
+    @Operation(summary = "Get all customeres.", description = "Retrieve a list of all registered customers.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Operation successful.")
     })

@@ -1,12 +1,10 @@
 package Santander.Loan.service.implementation;
 
 import Santander.Loan.exception.serviceexception.BusinessException;
-import Santander.Loan.model.Customer;
 import Santander.Loan.model.Funcionary;
 import Santander.Loan.reposiroty.FuncionaryRepository;
 import Santander.Loan.reposiroty.UserRepository;
-import Santander.Loan.security.RoleEnum;
-import jakarta.validation.ConstraintViolationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,12 +64,23 @@ public class FuncionaryServiceImpl {
                 .orElseThrow(() -> new BusinessException("Funcionário com o ID '" + funcionaryId +"' não foi encontrado."));
     }
 
-//    void deleteFuncionary(Long funcionaryId){
-//
-//    }
-//    List<Funcionary> getAllFuncionaries(){
-//
-//    }
+    public void deleteFuncioanry(Long funcionaryId){
+        if (!funcionaryRepository.existsById(funcionaryId)){
+            throw new BusinessException("Funcionário com ID '" + funcionaryId + "' não encontrado.");
+        }
+        funcionaryRepository.deleteById(funcionaryId);
+    }
+
+    public List<Funcionary> getAllFuncionaries(){
+        List<Funcionary> funcionaryList = funcionaryRepository.findAll();
+        if(funcionaryList.isEmpty()){
+            throw new BusinessException("A lista de funcionários está vazia.");
+        }
+        return funcionaryList;
+    }
+
+
+
 
 }
 

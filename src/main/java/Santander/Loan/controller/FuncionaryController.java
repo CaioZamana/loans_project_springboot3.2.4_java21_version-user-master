@@ -14,6 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 @RestController
 //@CrossOrigin(origins = {"http://localhost:8080"})
 @RequestMapping("/funcionaries")
@@ -30,7 +34,7 @@ public class FuncionaryController {
     @PostMapping("/post")
     @Operation(summary = "Create new funcionary.", description = "Create a new funcionary and return 'Funcionário 'fullName' criado com sucesso'.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Customer create successfully."),
+            @ApiResponse(responseCode = "201", description = "Funcionary create successfully."),
             @ApiResponse(responseCode = "422", description = "Invalid customer data provided.")
     })
     public ResponseEntity<String> createFuncionary(@RequestBody FuncionaryDto funcionaryDto){
@@ -55,7 +59,7 @@ public class FuncionaryController {
     }
 
     @GetMapping("/get/{funcionaryId}")
-    @Operation(summary = "Get funcionary by Id.", description = "Retrieve a specific funcionary based on its ID.")
+    @Operation(summary = "Get funcionary by Id.", description = "Retrieve a specific funcionary based on its Id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Operation Successful."),
             @ApiResponse(responseCode = "404", description = "Funcionary not found.")
@@ -64,5 +68,31 @@ public class FuncionaryController {
         Funcionary funcionary = funcionaryServiceImpl.getFuncionaryById(funcionaryId);
         FuncionaryDto funcionaryDto = FuncionaryDto.fromEntity(funcionary);
         return ResponseEntity.ok(funcionaryDto);
+    }
+
+    @DeleteMapping("/delete/{funcionaryId}")
+    @Operation(summary ="Delete a funcionary.", description = "Delete and existing funcionary based on its ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Funcionary deleted successfully."),
+            @ApiResponse(responseCode = "404", description = "Funcionary not found.")
+    })
+    public ResponseEntity<String> deleteFuncionary(@PathVariable Long funcionaryId){
+        funcionaryServiceImpl.deleteFuncioanry(funcionaryId);
+        return ResponseEntity.ok("Funcionary deletado com sucesso.");
+    }
+
+
+    @GetMapping("/get-all")
+    @Operation(summary = "Get all funcionaries.", description = "Retrieve a list of all funcionaries.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation sucessful.")
+    })
+    public ResponseEntity<List<FuncionaryDto>> getAllFuncionaries(){
+        //utilização de streams e map
+        List<Funcionary> funcionaries = funcionaryServiceImpl.getAllFuncionaries();
+        List<FuncionaryDto> funcionaryDtoList = funcionaries.stream()
+                .map(FuncionaryDto::fromEntity)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(funcionaryDtoList);
     }
 }

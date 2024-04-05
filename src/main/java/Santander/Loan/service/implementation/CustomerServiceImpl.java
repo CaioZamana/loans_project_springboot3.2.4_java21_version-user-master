@@ -53,7 +53,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
     public void deleteCustomer(Long customerId) {
         if (!customerRepository.existsById(customerId)) {
-            throw new BusinessException("Cliente com ID " + customerId + " não encontrado.");
+            throw new BusinessException("Cliente com ID '" + customerId + "' não encontrado.");
         }
         customerRepository.deleteById(customerId);
     }
