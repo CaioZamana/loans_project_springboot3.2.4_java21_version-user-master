@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
@@ -38,6 +39,11 @@ public class CustomerServiceImpl implements ICustomerService {
             throw new BusinessException("Este CPF já foi cadastrado.");
         }
 
+        // Verifica se a senha contém apenas dígitos numéricos
+        if (!isNumericPassword(customer.getPassword())) {
+            throw new BusinessException("A senha deve conter entre 6 e 10 dígitos numéricos.");
+        }
+
         // Criptografa a senha antes de salvar
         String encryptedPassword = passwordEncoder.encode(customer.getPassword());
         customer.setPassword(encryptedPassword);
@@ -49,6 +55,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
         // Salva o cliente no banco de dados
         customerRepository.save(customer);
+    }
+
+    private boolean isNumericPassword(String password) {
+        // Utiliza uma expressão regular para verificar se a senha contém apenas dígitos numéricos
+        return Pattern.matches("^\\d{6,10}$", password);
     }
 
     public void deleteCustomer(Long customerId) {
@@ -73,8 +84,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void updateCustomer(Customer updatedCustomer) {
-        try {
             // Verifica se o cliente existe no banco de dados
+            if (!isNumericPassword(updatedCustomer.getPassword())) {
+                throw new BusinessException("A senha deve conter entre 6 e 10 dígitos numéricos.");
+            }
+        try {
             Customer existingCustomer = customerRepository.findById(updatedCustomer.getId())
                     .orElseThrow(() -> new BusinessException("Cliente não encontrado."));
 

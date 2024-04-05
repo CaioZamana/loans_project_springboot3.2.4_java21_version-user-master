@@ -29,7 +29,6 @@ public class Users {
 
     @Column(nullable = false)
     @NotBlank(message = "Password é obrigatório")
-//    @Size(min = 8, max = 30, message = "O tamanho da senha deve ter entre 8 e 30 caracteres")
     private String password;
 
 //    @NotBlank(message = "Confirmação de senha é obrigatória")
