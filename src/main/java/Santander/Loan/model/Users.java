@@ -59,7 +59,7 @@ public class Users {
 
     @Column(nullable = false)
     @NotBlank(message = "Telefone é obrigatório")
-    @Pattern(regexp="\\d{10,11}", message="A informação do telefone deve conter apenas 10 ou 11 dígitos numéricos consecutivos, incluindo o DDD.") // Validação de padrão para 10 ou 11 dígitos numéricos
+    @Pattern(regexp="\\d{10,11}", message="A informação do telefone deve conter apenas 10 ou 11 dígitos numéricos consecutivos, incluindo o DDD") // Validação de padrão para 10 ou 11 dígitos numéricos
     private String telephone;
 
 

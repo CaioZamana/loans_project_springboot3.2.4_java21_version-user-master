@@ -1,44 +1,36 @@
 package Santander.Loan.model;
 
-
-
+import Santander.Loan.Enum.AccountTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração automática do ID em sequência
     private Long id;
 
-    @NotBlank(message = "O número da conta não pode estar em branco")
+    @Enumerated(EnumType.STRING)
+    private AccountTypeEnum accountType;
+
+    // Não é mais necessário gerar automaticamente o número da conta
     @Column(unique = true, nullable = false)
-    private UUID accountNumber;
+    private Long accountNumber; // Número de conta
 
     @Column(nullable = false)
     @NotBlank(message = "A agência não pode estar em branco")
     private String agency;
 
-    @Column(nullable = false)
-    @NotNull(message = "O saldo não pode estar em branco")
+    @Column(nullable = false, precision = 15, scale = 2)
+    @NotNull(message = "O saldo não pode ser nulo")
     private BigDecimal balance;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id") //A anotação @JoinColumn(name = "customer_id") é usada para definir uma chave estrangeira (foreign key)
-    @NotNull(message = "O cliente não pode ser nulo")
+    @JoinColumn(name = "customer_id") // Nome da coluna na tabela Accounts
     private Customer customer;
 
-    public Account() {
-    }
-
-    public Account(UUID accountNumber, String agency, BigDecimal balance, Customer customer) {
-        this.accountNumber = accountNumber;
-        this.agency = agency;
-        this.balance = balance;
-        this.customer = customer;
-    }
+    // Getters e setters
 }

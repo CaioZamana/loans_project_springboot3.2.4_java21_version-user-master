@@ -40,8 +40,22 @@ public class Loan {
     @DecimalMin(value = "0.0", inclusive = false, message = "A taxa de juros não pode ser negativa")
     private double interestRate;
 
-    @OneToMany(mappedBy = "loan")
+    @OneToMany(mappedBy = "loan")     //Relacionamentos "One to Many" mostram as colunas na tabela do many
     private List<Collateral> collateral;
+
+
+    @OneToMany(mappedBy = "loan")     //Relacionamentos "One to Many" mostram as colunas na tabela do many
+
+    private List<RiskAssessment> riskAssessments;
+
+    @OneToMany(mappedBy = "loan")    //Relacionamentos "One to Many" mostram as colunas na tabela do many
+
+    private List<InstallmentPayment> installmentPayment;
+
+
+    @OneToMany(mappedBy = "loan")     //Relacionamentos "One to Many" mostram as colunas na tabela do many
+
+    private List<TransactionHistory> transactionHistory;
 
     @ManyToOne
     @JoinColumn(name = "loan_product_id")
@@ -54,17 +68,6 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @OneToMany(mappedBy = "loan")
-    private List<RiskAssessment> riskAssessments;
-
-    @OneToMany(mappedBy = "loan")
-    private List<InstallmentPayment> installmentPayment;
-
-
-    @OneToMany(mappedBy = "loan")
-    private List<TransactionHistory> transactionHistory;
-
 
 
 }

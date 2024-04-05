@@ -19,7 +19,6 @@ public class Funcionary extends Users {
     @NotBlank(message = "O número de registro é obrigatório")
     private String professionalRegistrationNumber;
 
-
     @Override
     public Long getId() {
         return id;
