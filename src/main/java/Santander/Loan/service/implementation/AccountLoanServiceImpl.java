@@ -12,20 +12,20 @@ import java.math.BigDecimal;
 
 
 @Service
-public class AccountServiceImpl {
+public class AccountLoanServiceImpl {
 
     private final AccountRepository accountRepository;
 
     @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    public AccountLoanServiceImpl(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
 
     @Transactional
-    public void createAccount(AccountLoan account, Customer customer) {
-        if(customer ==null) {
-        throw new BusinessException("Customer não pode ser nulo");
+    public void createAccountLoan(AccountLoan account, Customer customer) {
+        if (customer == null) {
+            throw new BusinessException("O cliente não pode ser nulo");
         }
         if (account.getBalance().compareTo(BigDecimal.ZERO) < 0) {
             throw new BusinessException("O saldo da conta não pode ser negativo");

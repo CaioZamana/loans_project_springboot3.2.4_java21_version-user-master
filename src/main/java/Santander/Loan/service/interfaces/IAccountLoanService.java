@@ -4,9 +4,9 @@ import Santander.Loan.model.AccountLoan;
 
 import java.util.List;
 
-public interface IAccountService {
+public interface IAccountLoanService {
 
-    void createAccount(AccountLoan accountLoan);
+    void createAccountLoan(AccountLoan accountLoan);
 
     void updateAccount(AccountLoan accountLoan);
 

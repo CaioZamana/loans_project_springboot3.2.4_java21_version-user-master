@@ -8,15 +8,13 @@ import java.math.BigDecimal;
 public class AccountLoanDto {
     private String agency;
     private BigDecimal balance;
-    private Customer customer;
 
 
-    //Método AccountLoanDto fromEntity para transformar Entidade em Dto
+    //Método AccountLoanController fromEntity para transformar Entidade em Dto
     public AccountLoanDto fromEntity(AccountLoan accountLoan){
         AccountLoanDto accountLoanDto = new AccountLoanDto();
         accountLoanDto.setAgency(accountLoan.getAgency());
         accountLoanDto.setBalance(accountLoan.getBalance());
-        accountLoanDto.setCustomer(accountLoan.getCustomer());
         return accountLoanDto;
     }
 
@@ -25,7 +23,6 @@ public class AccountLoanDto {
         AccountLoan accountLoan = new AccountLoan();
         accountLoan.setAgency(this.agency);
         accountLoan.setBalance(this.balance);
-        accountLoan.setCustomer(this.customer);
         return accountLoan;
     }
     public String getAgency() {
@@ -44,11 +41,5 @@ public class AccountLoanDto {
         this.balance = balance;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }
