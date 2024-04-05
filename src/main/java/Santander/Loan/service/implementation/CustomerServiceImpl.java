@@ -84,11 +84,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public void updateCustomer(Customer updatedCustomer) {
-            // Verifica se o cliente existe no banco de dados
             if (!isNumericPassword(updatedCustomer.getPassword())) {
                 throw new BusinessException("A senha deve conter entre 6 e 10 dígitos numéricos.");
             }
         try {
+            // Verifica se o cliente existe no banco de dados
             Customer existingCustomer = customerRepository.findById(updatedCustomer.getId())
                     .orElseThrow(() -> new BusinessException("Cliente não encontrado."));
 

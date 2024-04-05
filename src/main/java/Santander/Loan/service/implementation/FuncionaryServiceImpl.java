@@ -54,6 +54,9 @@ public class FuncionaryServiceImpl implements IFuncionaryService {
     }
 
     public void updateFuncionary(Funcionary updatedFuncionary){
+        if (!isNumericPassword(updatedFuncionary.getPassword())) {
+            throw new BusinessException("A senha deve conter entre 6 e 10 dígitos numéricos.");
+        }
         try {
             Funcionary existingFuncionary = funcionaryRepository.findById(updatedFuncionary.getId())
                     .orElseThrow(() -> new BusinessException("Funcionário não encontrado."));
