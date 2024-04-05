@@ -120,7 +120,7 @@ public class FuncionaryDto {
     public static FuncionaryDto fromEntity(Funcionary funcionary) {
         FuncionaryDto funcionaryDto = new FuncionaryDto();
         funcionaryDto.setUsername(funcionary.getUsername());
-        funcionaryDto.setPassword(funcionary.getPassword());
+        funcionaryDto.setPassword("Password Censurado");
         funcionaryDto.setEmail(funcionary.getEmail());
         funcionaryDto.setCpf(funcionary.getCpf());
         funcionaryDto.setFullName(funcionary.getFullName());

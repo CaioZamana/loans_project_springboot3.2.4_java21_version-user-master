@@ -81,7 +81,7 @@ public class CustomerDto {
     public static CustomerDto fromEntity(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
         customerDto.setUsername(customer.getUsername());
-        customerDto.setPassword(customer.getPassword());
+        customerDto.setPassword("Password Censurado");
         customerDto.setEmail(customer.getEmail());
         customerDto.setCpf(customer.getCpf());
         customerDto.setFullName(customer.getFullName());

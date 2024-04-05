@@ -116,7 +116,7 @@ public class UserDto {
         UserDto dto = new UserDto();
         dto.setId(users.getId());
         dto.setUsername(users.getUsername());
-        dto.setPassword(users.getPassword());
+        dto.setPassword("Password Censurado");
         dto.setEmail(users.getEmail());
         dto.setCpf(users.getCpf());
         dto.setFullName(users.getFullName());
