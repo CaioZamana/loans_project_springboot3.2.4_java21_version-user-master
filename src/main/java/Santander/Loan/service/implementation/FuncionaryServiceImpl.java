@@ -5,13 +5,14 @@ import Santander.Loan.model.Funcionary;
 import Santander.Loan.reposiroty.FuncionaryRepository;
 import Santander.Loan.reposiroty.UserRepository;
 
+import Santander.Loan.service.interfaces.IFuncionaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class FuncionaryServiceImpl {
+public class FuncionaryServiceImpl implements IFuncionaryService {
 
     private final FuncionaryRepository funcionaryRepository;
     private final UserRepository userRepository;
@@ -64,7 +65,7 @@ public class FuncionaryServiceImpl {
                 .orElseThrow(() -> new BusinessException("Funcionário com o ID '" + funcionaryId +"' não foi encontrado."));
     }
 
-    public void deleteFuncioanry(Long funcionaryId){
+    public void deleteFuncionary(Long funcionaryId){
         if (!funcionaryRepository.existsById(funcionaryId)){
             throw new BusinessException("Funcionário com ID '" + funcionaryId + "' não encontrado.");
         }

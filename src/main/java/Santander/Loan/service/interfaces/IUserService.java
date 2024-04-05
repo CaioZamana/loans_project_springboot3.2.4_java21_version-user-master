@@ -18,4 +18,6 @@ public interface IUserService {
 
     List<Users> getAllUsers();
 
+    Users getUserById(Long userId);
+
 }

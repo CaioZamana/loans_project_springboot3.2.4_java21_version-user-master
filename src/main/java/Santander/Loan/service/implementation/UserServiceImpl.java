@@ -3,13 +3,14 @@ package Santander.Loan.service.implementation;
 import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Users;
 import Santander.Loan.reposiroty.UserRepository;
+import Santander.Loan.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements IUserService {
 
     private final UserRepository userRepository;
 

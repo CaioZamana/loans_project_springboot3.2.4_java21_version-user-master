@@ -77,7 +77,7 @@ public class FuncionaryController {
             @ApiResponse(responseCode = "404", description = "Funcionary not found.")
     })
     public ResponseEntity<String> deleteFuncionary(@PathVariable Long funcionaryId){
-        funcionaryServiceImpl.deleteFuncioanry(funcionaryId);
+        funcionaryServiceImpl.deleteFuncionary(funcionaryId);
         return ResponseEntity.ok("Funcionary deletado com sucesso.");
     }
 
