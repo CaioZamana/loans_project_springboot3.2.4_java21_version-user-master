@@ -42,4 +42,53 @@ public class Customer extends Users {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public CreditScore getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(CreditScore creditScore) {
+        this.creditScore = creditScore;
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public List<TransactionHistory> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void setTransactionHistory(List<TransactionHistory> transactionHistory) {
+        this.transactionHistory = transactionHistory;
+    }
+
+    public RoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
 }
