@@ -31,8 +31,9 @@ public class Customer extends Users {
 // Dessa forma, podemos recuperar todas as contas, empréstimos ou históricos de transações associados a um cliente específico facilmente usando essa coluna de referência.
 
 
-    @OneToMany(mappedBy = "customer")
-    private List<Account> accounts;
+    @OneToOne
+    @JoinColumn(name = "account_loan_id")
+    private AccountLoan accountLoans;
 
     @OneToMany(mappedBy = "customer")
     private List<Loan> loans;
@@ -60,12 +61,13 @@ public class Customer extends Users {
         this.creditScore = creditScore;
     }
 
-    public List<Account> getAccounts() {
-        return accounts;
+
+    public AccountLoan getAccountLoans() {
+        return accountLoans;
     }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public void setAccountLoans(AccountLoan accountLoans) {
+        this.accountLoans = accountLoans;
     }
 
     public List<Loan> getLoans() {

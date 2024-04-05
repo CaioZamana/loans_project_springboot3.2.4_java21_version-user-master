@@ -1,23 +1,20 @@
 package Santander.Loan.service.interfaces;
 
-import Santander.Loan.model.Account;
-import Santander.Loan.model.Customer;
+import Santander.Loan.model.AccountLoan;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.UUID;
 
 public interface IAccountService {
 
-    void createAccount(Account account);
+    void createAccount(AccountLoan accountLoan);
 
-    void updateAccount(Account account);
+    void updateAccount(AccountLoan accountLoan);
 
-    void deleteAccount(Account account);
+    void deleteAccount(AccountLoan accountLoan);
 
-    Account getAccountById(Long accountId);
+    AccountLoan getAccountById(Long accountId);
 
-    List<Account> getAllAccounts();
+    List<AccountLoan> getAllAccounts();
 
 
 //    deposit: Método para realizar um depósito em uma conta bancária.
