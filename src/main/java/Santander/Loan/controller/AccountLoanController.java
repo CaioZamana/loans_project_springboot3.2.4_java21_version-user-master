@@ -7,6 +7,9 @@ import Santander.Loan.model.AccountLoan;
 import Santander.Loan.model.Customer;
 import Santander.Loan.service.implementation.AccountLoanServiceImpl;
 import Santander.Loan.service.implementation.CustomerServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.HttpStatus;
@@ -27,26 +30,16 @@ public class AccountLoanController {
     }
 
     @PostMapping("/post/{customerId}")
+    @Operation(summary = "Create new Account.", description = "Create a new account for an Customer.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account for customer create successfully."),
+            @ApiResponse(responseCode = "422", description = "Validation failed. Please check the provided fields.")
+    })
     public ResponseEntity<String> createAccountLoan(@PathVariable Long customerId, @RequestBody AccountLoanDto accountLoanDto) {
 
-            // Carrega o cliente correspondente ao customerId do banco de dados
             Customer customer = customerServiceImpl.getCustomerById(customerId);
-
-            // Verifica se o cliente foi encontrado
-            if (customer == null) {
-                return ResponseEntity.badRequest().body("Cliente não encontrado para o ID fornecido: " + customerId);
-            }
-
-            // Cria uma nova conta de empréstimo com os dados do DTO
-            AccountLoan accountLoan = new AccountLoan();
-            accountLoan.setBalance(accountLoanDto.getBalance());
-            accountLoan.setAgency(accountLoanDto.getAgency());
-            // Outros setters para configurar a conta de empréstimo
-
-            // Chama o serviço para criar a conta de empréstimo associada ao cliente com o ID fornecido
+            AccountLoan accountLoan = accountLoanDto.toEntity();
             accountLoanServiceImpl.createAccountLoan(accountLoan, customer);
-
-            // Retorna uma resposta de sucesso
             return ResponseEntity.ok("Conta de empréstimo criada com sucesso.");
 
     }

@@ -32,7 +32,7 @@ public class FuncionaryController {
     }
 
     @PostMapping("/post")
-    @Operation(summary = "Create new funcionary.", description = "Create a new funcionary and return 'Funcionário 'fullName' criado com sucesso'.")
+    @Operation(summary = "Create new funcionary.", description = "Create a new funcionary.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Funcionary create successfully."),
             @ApiResponse(responseCode = "422", description = "Invalid customer data provided.")

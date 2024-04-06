@@ -25,7 +25,7 @@ public class AccountLoanServiceImpl {
     @Transactional
     public void createAccountLoan(AccountLoan account, Customer customer) {
         if (customer == null)
-            throw new BusinessException("O cliente não pode ser nulo");
+            throw new BusinessException("Cliente com id: '" + customer + "' não encontrado.");
 
         AccountLoan existingAccount = accountRepository.findByCustomer(customer);
         if (existingAccount != null)
