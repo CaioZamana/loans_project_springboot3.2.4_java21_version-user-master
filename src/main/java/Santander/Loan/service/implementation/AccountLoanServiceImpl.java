@@ -24,15 +24,13 @@ public class AccountLoanServiceImpl {
 
     @Transactional
     public void createAccountLoan(AccountLoan account, Customer customer) {
-        if (customer == null) {
+        if (customer == null)
             throw new BusinessException("O cliente não pode ser nulo");
-        }
-        if (account.getBalance().compareTo(BigDecimal.ZERO) < 0) {
-            throw new BusinessException("O saldo da conta não pode ser negativo");
-        }
-        if (account.getAgency() == null || account.getAgency().isEmpty()) {
-            throw new BusinessException("A agência não pode estar vazia");
-        }
+
+        AccountLoan existingAccount = accountRepository.findByCustomer(customer);
+        if (existingAccount != null)
+            throw new BusinessException("Este customer já tem uma account.");
+
         account.setCustomer(customer);
         accountRepository.save(account);
     }
