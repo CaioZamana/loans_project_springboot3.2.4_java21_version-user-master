@@ -1,6 +1,5 @@
 package Santander.Loan.model;
 
-import Santander.Loan.security.RoleEnum;
 import jakarta.persistence.*;
 //import lombok.*;
 

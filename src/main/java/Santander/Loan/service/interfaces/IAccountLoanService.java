@@ -1,12 +1,14 @@
 package Santander.Loan.service.interfaces;
 
 import Santander.Loan.model.AccountLoan;
+import Santander.Loan.model.Customer;
 
 import java.util.List;
 
 public interface IAccountLoanService {
 
-    void createAccountLoan(AccountLoan accountLoan);
+    void createAccountLoan(AccountLoan accountLoan, Customer customer
+    );
 
     void updateAccount(AccountLoan accountLoan);
 
