@@ -3,6 +3,7 @@ package Santander.Loan.service.interfaces;
 import Santander.Loan.model.AccountLoan;
 import Santander.Loan.model.Customer;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface IAccountLoanService {
@@ -12,19 +13,20 @@ public interface IAccountLoanService {
 
     void updateAccountAgency(AccountLoan accountLoan);
 
-    void deleteAccount(AccountLoan accountLoan);
+    void deleteAccount(Long accountId);
 
     AccountLoan getAccountById(Long accountId);
 
     List<AccountLoan> getAllAccounts();
 
+    void deposit(Long accountId, BigDecimal amount);
 
-//    deposit: Método para realizar um depósito em uma conta bancária.
-//
-//    withdraw: Método para realizar um saque de uma conta bancária.
-//
-//    transfer: Método para transferir fundos entre duas contas bancárias.
-//
+
+    void withdraw(Long accountId, BigDecimal amount);
+
+    void transfer(Long sourceAccountId, Long targetAccountId, BigDecimal amount);
+
+
 //    getAccountBalance: Método para obter o saldo atual de uma conta bancária.
 //
 //    getAccountStatement: Método para obter o extrato de uma conta bancária.
