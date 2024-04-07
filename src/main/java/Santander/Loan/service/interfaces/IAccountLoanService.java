@@ -10,7 +10,7 @@ public interface IAccountLoanService {
     void createAccountLoan(AccountLoan accountLoan, Customer customer
     );
 
-    void updateAccount(AccountLoan accountLoan);
+    void updateAccountAgency(AccountLoan accountLoan);
 
     void deleteAccount(AccountLoan accountLoan);
 
