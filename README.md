@@ -17,11 +17,11 @@ Abaixo está uma visão geral do fluxo de requisições na arquitetura:
 1. **Cliente**:
     - O cliente envia requisições HTTP (POST, GET, PUT, DELETE) para a API RESTful.
 
-2. **Camada de Apresentação (Controller)**:
+2. **Camada de requisições (Controller)**:
     - Os controladores (Controllers) recebem as requisições HTTP do cliente e as direcionam para os respectivos métodos de manipulação de recursos.
     - Cada controlador define os endpoints da API e mapeia as requisições para métodos específicos.
 
-3. **Camada de Conversão (DTO)**:
+3. **Camada de transferência/conversão (DTO)**:
     - Antes de processar as requisições, os dados recebidos do cliente são convertidos para objetos de transferência de dados (DTOs).
     - Os DTOs são utilizados para transferir dados entre a camada de apresentação (Controllers) e a camada de serviço, encapsulando apenas as informações relevantes.
 
@@ -43,7 +43,7 @@ Abaixo está uma visão geral do fluxo de requisições na arquitetura:
 A seguir, descrevemos a estrutura de pacotes:
 
 - **controller**: Este pacote contém as classes que atuam como controladores, responsáveis por manipular as requisições HTTP e direcioná-las para o serviço apropriado.
-- **documentation**: Aqui estão os arquivos relacionados às especificações de API do sistema, utilizando o Swagger.
+- **documentation**: Aqui estão arquivos relacionados às especificações de API do sistema, neste caso utilizando o Swagger.
 - **dto**: As classes DTO (Data Transfer Object) residem neste pacote. Elas são utilizadas para transferir dados entre o cliente e o servidor, fornecendo uma abstração dos detalhes de implementação interna.
 - **Enum**: Enumerações importantes para o funcionamento do sistema são definidas neste pacote.
 - **exception**: Classes de exceção personalizadas são colocadas aqui. Elas são usadas para lidar com exceções específicas do domínio ou da aplicação.
