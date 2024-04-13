@@ -28,7 +28,6 @@ public interface IAccountLoanService {
 
 
 //    getAccountBalance: Método para obter o saldo atual de uma conta bancária.
-//
 //    getAccountStatement: Método para obter o extrato de uma conta bancária.
 //    getLoansByAccount: Método para obter todos os empréstimos associados a uma conta bancária específica.
 //    makeLoanPayment: Método para fazer um pagamento em um empréstimo existente.
