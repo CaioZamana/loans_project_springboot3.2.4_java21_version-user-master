@@ -1,14 +1,13 @@
 # Loans project with Clean-Achitecture
 
 
-## Arquitetura Limpa
-Este projeto adota os princípios da Arquitetura Limpa (Clean Architecture) para garantir uma estrutura modular, utilizando o Spring Framework e altamente testável.
-Documentação da API com Swagger UI:
+### Arquitetura Limpa
+Este projeto adota os princípios da Arquitetura Limpa (Clean Architecture) para garantir uma estrutura modular, altamente testável utilizando o Spring Framework.
+
+### Documentação da API com Swagger UI:
 http://loans2024java20.sa-east-1.elasticbeanstalk.com/swagger-ui/index.html
 
-
-
-## Estrutura de Pacotes
+### Estrutura de Pacotes
 A seguir, descrevemos a estrutura de pacotes:
 
 - **controller**: Este pacote contém as classes que atuam como controladores, responsáveis por manipular as requisições HTTP e direcioná-las para o serviço apropriado.
