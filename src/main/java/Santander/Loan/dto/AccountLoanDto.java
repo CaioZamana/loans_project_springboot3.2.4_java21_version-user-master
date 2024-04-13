@@ -11,7 +11,7 @@ public class AccountLoanDto {
 
 
     //Método AccountLoanController fromEntity para transformar Entidade em Dto
-    public AccountLoanDto fromEntity(AccountLoan accountLoan){
+    public static AccountLoanDto fromEntity(AccountLoan accountLoan){
         AccountLoanDto accountLoanDto = new AccountLoanDto();
         accountLoanDto.setAgency(accountLoan.getAgency());
         accountLoanDto.setBalance(accountLoan.getBalance());

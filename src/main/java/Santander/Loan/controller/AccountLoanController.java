@@ -43,4 +43,11 @@ public class AccountLoanController {
             return ResponseEntity.ok("Conta de empréstimo criada com sucesso.");
 
     }
+
+    @GetMapping("/get/{accountId}")
+    public ResponseEntity<AccountLoanDto> getAccountById(@PathVariable Long accountId){
+        AccountLoan accountLoan = accountLoanServiceImpl.getAccountById(accountId);
+        AccountLoanDto accountLoanDto = AccountLoanDto.fromEntity(accountLoan);
+        return ResponseEntity.ok(accountLoanDto);
+    }
 }
