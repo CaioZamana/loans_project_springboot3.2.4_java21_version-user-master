@@ -44,10 +44,18 @@ public class AccountLoanController {
 
     }
 
+
     @GetMapping("/get/{accountId}")
+    @Operation(summary = "Get a account by ID.", description = "Retrieves an account's information based on the provided ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Account found and returned successfully"),
+            @ApiResponse(responseCode = "404", description = "Account not found")
+    })
     public ResponseEntity<AccountLoanDto> getAccountById(@PathVariable Long accountId){
         AccountLoan accountLoan = accountLoanServiceImpl.getAccountById(accountId);
         AccountLoanDto accountLoanDto = AccountLoanDto.fromEntity(accountLoan);
         return ResponseEntity.ok(accountLoanDto);
     }
+
+
 }
