@@ -15,7 +15,7 @@ A imagem ilustra o fluxo de requisições em uma aplicação web API Rest com Sp
 Abaixo está uma visão geral do fluxo de requisições na arquitetura:
 
 1. **Cliente**:
-    - O cliente envia requisições HTTP (POST, GET, PUT, DELETE) para a API RESTful.
+    - O cliente envia requisições HTTP (POST, GET, PUT, PATCH, DELETE) para a API RESTful.
 
 2. **Camada de requisições (Controller)**:
     - Os controladores (Controllers) recebem as requisições HTTP do cliente e as direcionam para os respectivos métodos de manipulação de recursos.
