@@ -29,11 +29,16 @@ Abaixo está uma visão geral do fluxo de requisições na arquitetura:
     - A camada de serviço implementa a lógica de negócio da aplicação e processa as requisições, realizando as operações desejadas.
     - Ela inclui validações, cálculos, acesso a serviços externos, entre outras operações específicas do domínio da aplicação.
 
-5. **Camada de Persistência (Repository)**:
+5. **Camada de Entidade(Entity)**:
+   - A camada de entidade define os objetos de dados que representam as entidades do domínio da aplicação.
+   - As entidades mapeiam diretamente para as tabelas do banco de dados em sistemas de persistência relacionais.
+   - Elas encapsulam o estado e o comportamento dos objetos de negócio da aplicação.
+
+6. **Camada de Persistência (Repository)**:
     - Após a lógica de negócio processar a requisição, ela pode interagir com a camada de persistência para armazenar ou recuperar dados no banco de dados.
     - Os repositórios fornecem acesso aos dados armazenados e utilizam tecnologias como ORM (Object-Relational Mapping) ou JPA (Java Persistence API).
 
-6. **Resposta (Response)**:
+7. **Resposta (Response)**:
     - Após a conclusão da operação, a camada de serviço retorna uma resposta para o controlador, que constrói uma resposta HTTP apropriada e a envia de volta para o cliente.
 
 ## Diagrama de Classes da Aplicação de Empréstimos (UML Class Diagram Loan Application)
