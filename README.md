@@ -23,7 +23,7 @@ Abaixo está uma visão geral do fluxo de requisições na arquitetura:
 
 3. **Camada de transferência/conversão (DTO)**:
     - Antes de processar as requisições, os dados recebidos do cliente são convertidos para objetos de transferência de dados (DTOs).
-    - Os DTOs são utilizados para transferir dados entre a camada de apresentação (Controllers) e a camada de serviço, encapsulando apenas as informações relevantes.
+    - Os DTOs são utilizados para transferir dados entre a camada dos controladores (Controllers) e a camada de serviço, encapsulando apenas as informações relevantes.
 
 4. **Camada Lógica de Negócio (Service)**:
     - A camada de serviço implementa a lógica de negócio da aplicação e processa as requisições, realizando as operações desejadas.
