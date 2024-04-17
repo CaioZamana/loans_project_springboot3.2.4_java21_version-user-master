@@ -1,4 +1,4 @@
-package Santander.Loan.exception.serviceexception;
+package Santander.Loan.exception.exceptionservice;
 
 public class BusinessException extends RuntimeException {
 

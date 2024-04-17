@@ -3,7 +3,6 @@ package Santander.Loan.controller;
 
 
 import Santander.Loan.dto.CustomerDto;
-import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Customer;
 import Santander.Loan.service.implementation.CustomerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;

@@ -1,6 +1,6 @@
 package Santander.Loan.service.implementation;
 
-import Santander.Loan.exception.serviceexception.BusinessException;
+import Santander.Loan.exception.exceptionservice.BusinessException;
 import Santander.Loan.model.Funcionary;
 import Santander.Loan.reposiroty.FuncionaryRepository;
 import Santander.Loan.reposiroty.UserRepository;

@@ -2,7 +2,6 @@ package Santander.Loan.controller;
 
 
 import Santander.Loan.dto.AccountLoanDto;
-import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.AccountLoan;
 import Santander.Loan.model.Customer;
 import Santander.Loan.service.implementation.AccountLoanServiceImpl;
@@ -12,7 +11,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 //import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

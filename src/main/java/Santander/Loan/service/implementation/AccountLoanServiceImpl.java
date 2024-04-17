@@ -1,6 +1,6 @@
 package Santander.Loan.service.implementation;
 
-import Santander.Loan.exception.serviceexception.BusinessException;
+import Santander.Loan.exception.exceptionservice.BusinessException;
 import Santander.Loan.model.AccountLoan;
 import Santander.Loan.model.Customer;
 import Santander.Loan.reposiroty.AccountRepository;
@@ -85,7 +85,7 @@ public class AccountLoanServiceImpl implements IAccountLoanService {
     @Transactional
     public void withdraw(Long accountId, BigDecimal amount){
         if(amount.signum() <= 0 ){
-            throw new BusinessException ("O valor para retirar deve ser maior que zero");
+            throw new BusinessException ("Saldo inválido.");
         }
         AccountLoan account = accountRepository.findById(accountId)
                 .orElseThrow(()-> new BusinessException("Conta com ID '" + accountId + "' não encontrada."));

@@ -1,13 +1,12 @@
-package Santander.Loan.exception.controllerexception;
+package Santander.Loan.exception.exceptioncontroller;
 
-import Santander.Loan.exception.serviceexception.BusinessException;
-import Santander.Loan.exception.serviceexception.NotFoundException;
+import Santander.Loan.exception.exceptionservice.BusinessException;
+import Santander.Loan.exception.exceptionservice.NotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -43,7 +42,4 @@ public class GlobalExceptionHandler {
         String errorMessage = e.getConstraintViolations().iterator().next().getMessage();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
-
-
-
 }

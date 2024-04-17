@@ -1,8 +1,6 @@
 package Santander.Loan.controller;
 
-import Santander.Loan.dto.CustomerDto;
 import Santander.Loan.dto.FuncionaryDto;
-import Santander.Loan.exception.serviceexception.BusinessException;
 import Santander.Loan.model.Funcionary;
 import Santander.Loan.service.implementation.FuncionaryServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @RestController
