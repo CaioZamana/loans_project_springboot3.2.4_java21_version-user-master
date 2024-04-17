@@ -30,8 +30,8 @@ public class Customer extends Users {
 // Dessa forma, podemos recuperar todas as contas, empréstimos ou históricos de transações associados a um cliente específico facilmente usando essa coluna de referência.
 
 
-    @OneToOne
-    @JoinColumn(name = "account_loan_id")
+    //accesso unidirecional de Account Loan, ou seja só a tabela account loan visualiza a coluna customer
+    @OneToOne(mappedBy = "customer")
     private AccountLoan accountLoans;
 
     @OneToMany(mappedBy = "customer")
