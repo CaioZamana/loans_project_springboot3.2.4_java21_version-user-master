@@ -86,10 +86,11 @@ public class FuncionaryController {
     })
     public ResponseEntity<List<FuncionaryDto>> getAllFuncionaries(){
         //utilização de streams e map
-        List<Funcionary> funcionaries = funcionaryServiceImpl.getAllFuncionaries();
-        List<FuncionaryDto> funcionaryDtoList = funcionaries.stream()
+        List<FuncionaryDto> funcionaryDtoList = funcionaryServiceImpl.getAllFuncionaries().stream()
                 .map(FuncionaryDto::fromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(funcionaryDtoList);
     }
+
+
 }

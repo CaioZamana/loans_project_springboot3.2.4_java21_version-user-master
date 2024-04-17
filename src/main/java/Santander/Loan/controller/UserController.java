@@ -78,15 +78,10 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "Operation successful")
     })
     public ResponseEntity<List<UserDto>> getAllUsers() {
-        //GET ALL Utilizando streams e map
-
-        List<Users> users = userServiceImpl.getAllUsers();
-
         // Mapeia os usuários para DTOs usando stream e Collectors.toList()
-        List<UserDto> userDtos = users.stream()
+        List<UserDto> userDtos = userServiceImpl.getAllUsers().stream()
                 .map(UserDto::fromEntity)
                 .collect(Collectors.toList());
-
         return ResponseEntity.ok(userDtos);
     }
 

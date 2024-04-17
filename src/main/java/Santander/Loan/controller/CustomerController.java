@@ -61,14 +61,12 @@ public class CustomerController {
             @ApiResponse(responseCode = "200", description = "Operation successful.")
     })
     public ResponseEntity<List<CustomerDto>> getAllCustomers(){
-    //GET ALL Utilizando streams e map
-
-        List<Customer> customers = customerServiceImpl.getAllCustomers();
-        List<CustomerDto> customerDtoList = customers.stream()
+        List<CustomerDto> customerDtoList = customerServiceImpl.getAllCustomers().stream()
                 .map(CustomerDto::fromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(customerDtoList);
     }
+
     @GetMapping("/get/{customerId}")
     @Operation(summary = "Get a customer by ID.", description = "Retrieve a specific customer based on its ID.")
     @ApiResponses(value = {
