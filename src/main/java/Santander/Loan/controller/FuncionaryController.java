@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,12 +86,11 @@ public class FuncionaryController {
             @ApiResponse(responseCode = "200", description = "Operation sucessful.")
     })
     public ResponseEntity<List<FuncionaryDto>> getAllFuncionaries(){
-        //utilização de streams e map
+        //utilização de streams e map para otimizar grande quantidade de dados
         List<FuncionaryDto> funcionaryDtoList = funcionaryServiceImpl.getAllFuncionaries().stream()
                 .map(FuncionaryDto::fromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(funcionaryDtoList);
     }
-
 
 }

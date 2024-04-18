@@ -23,7 +23,7 @@ public class AccountLoan {
     private BigDecimal balance;
 
     @OneToOne
-    @JoinColumn(name = "customer_id") // Nome da coluna na tabela Accounts
+    @JoinColumn(name = "customer_id") // Forengin key Nome da coluna na tabela Accounts
     private Customer customer;
 
     public Long getId() {

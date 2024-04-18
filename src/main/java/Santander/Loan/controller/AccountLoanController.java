@@ -2,6 +2,7 @@ package Santander.Loan.controller;
 
 
 import Santander.Loan.dto.AccountLoanDto;
+import Santander.Loan.exception.exceptionservice.BusinessException;
 import Santander.Loan.model.AccountLoan;
 import Santander.Loan.model.Customer;
 import Santander.Loan.service.implementation.AccountLoanServiceImpl;
@@ -11,8 +12,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 //import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 //@CrossOrigin(origins = {"http://localhost:8080"})
@@ -35,10 +41,10 @@ public class AccountLoanController {
     })
     public ResponseEntity<String> createAccountLoan(@PathVariable Long customerId, @RequestBody AccountLoanDto accountLoanDto) {
 
-            Customer customer = customerServiceImpl.getCustomerById(customerId);
-            AccountLoan accountLoan = accountLoanDto.toEntity();
-            accountLoanServiceImpl.createAccountLoan(accountLoan, customer);
-            return ResponseEntity.ok("Conta de empréstimo criada com sucesso.");
+        Customer customer = customerServiceImpl.getCustomerById(customerId);
+        AccountLoan accountLoan = accountLoanDto.toEntity();
+        accountLoanServiceImpl.createAccountLoan(accountLoan, customer);
+        return ResponseEntity.ok("Conta de empréstimo criada com sucesso.");
 
     }
 
@@ -49,11 +55,23 @@ public class AccountLoanController {
             @ApiResponse(responseCode = "200", description = "Account found and returned successfully"),
             @ApiResponse(responseCode = "404", description = "Account not found")
     })
-    public ResponseEntity<AccountLoanDto> getAccountById(@PathVariable Long accountId){
+    public ResponseEntity<AccountLoanDto> getAccountById(@PathVariable Long accountId) {
         AccountLoan accountLoan = accountLoanServiceImpl.getAccountById(accountId);
         AccountLoanDto accountLoanDto = AccountLoanDto.fromEntity(accountLoan);
         return ResponseEntity.ok(accountLoanDto);
     }
 
+    @GetMapping("/get-all")
+    @Operation(summary = "Get all accounts.", description = "Retrieves a list of accounts.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operation sucessful.")
+    })
+    ResponseEntity<List<AccountLoanDto>> getAllAccounts() {
+        List<AccountLoanDto> accountLoanDtoList = accountLoanServiceImpl.getAllAccounts().stream()
+                .map(AccountLoanDto::fromEntity)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(accountLoanDtoList);
+
+    }
 
 }
