@@ -1,14 +1,14 @@
-# Loans Project with Clean Architecture
+# Aplicação API RESTFul de um sistema de empréstimos
+## Loans Project with Clean Architecture
 
-## Clean Architecture
+### Clean Architecture
 Este projeto adota os princípios da Arquitetura Limpa (Clean Architecture) para garantir uma estrutura modular e altamente testável utilizando o Spring Framework.
 
 ## Documentation of API Rest with Swagger UI
 [Swagger UI](http://loans2024java20.sa-east-1.elasticbeanstalk.com/swagger-ui/index.html)
 
-## Arquitetura RESTful
+## Fluxo de requisições da Arquitetura RESTful
 
-### Fluxo de Requisições (Request Flow)
 A imagem ilustra o fluxo de requisições em uma aplicação web API Rest com Spring Framework, detalhando as etapas envolvidas no processamento de uma requisição HTTP.
 ![request-flow-api-rest.jpg](src%2Fmain%2Fresources%2Fstatic%2Frequest-flow-api-rest.jpg)
 
