@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 //import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,7 @@ public class AccountLoanController {
     private final AccountLoanServiceImpl accountLoanServiceImpl;
     private final CustomerServiceImpl customerServiceImpl; // Injeção de dependência do serviço de Customer
 
+    @Autowired
     public AccountLoanController(AccountLoanServiceImpl accountLoanServiceImpl, CustomerServiceImpl customerServiceImpl) {
         this.accountLoanServiceImpl = accountLoanServiceImpl;
         this.customerServiceImpl = customerServiceImpl;
@@ -71,6 +73,13 @@ public class AccountLoanController {
                 .map(AccountLoanDto::fromEntity)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(accountLoanDtoList);
+
+    }
+
+    @DeleteMapping("/delete/{accountId}")
+    public ResponseEntity<String> deleteAccountLoan(@PathVariable Long accountId){
+        accountLoanServiceImpl.deleteAccount(accountId);
+        return ResponseEntity.ok("Account '" + accountId + "' deletada com sucesso.");
 
     }
 
