@@ -67,7 +67,7 @@ A seguir, descrevemos a estrutura de pacotes:
 <table>
   <tr>
     <td>
-      <img width="80px" align="center" src="https://avatars.githubusercontent.com/caiobello"/>
+      <img width="80px" align="center" src="https://avatars.githubusercontent.com/caiozamana"/>
     </td>
     <td align="left">
       <a href="https://github.com/caiobello">
